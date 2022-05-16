@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.nice_animals">
+    package="com.example.shibe_flutter">
    <application
-        android:label="nice_animals"
+        android:label="shibe_flutter"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
