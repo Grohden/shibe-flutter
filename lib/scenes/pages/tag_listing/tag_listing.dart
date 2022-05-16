@@ -48,25 +48,28 @@ class _TagListingState extends State<TagListing> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        children: _tags.map((tag) {
-          return InkWell(
-            onTap: () {
-              TagPicturesScreen.navigateWithSimpleTag(
-                context: context,
-                userId: widget.userId,
-                tag: tag,
-              );
-            },
-            child: Chip(
-              visualDensity: VisualDensity.comfortable,
-              label: Text(tag.name),
-            ),
-          );
-        }).toList(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Center(
+        child: Wrap(
+          spacing: 14,
+          runSpacing: 8,
+          children: _tags.map((tag) {
+            return InkWell(
+              onTap: () {
+                TagPicturesScreen.navigateWithSimpleTag(
+                  context: context,
+                  userId: widget.userId,
+                  tag: tag,
+                );
+              },
+              child: Chip(
+                visualDensity: VisualDensity.comfortable,
+                label: Text(tag.name),
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

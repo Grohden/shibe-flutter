@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shibe_flutter/api/graphql_api.dart';
 import 'package:shibe_flutter/client.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:shibe_flutter/enum_utils.dart';
 
 class AnimalPicturesDetailsScreen extends StatefulWidget {
   const AnimalPicturesDetailsScreen({
@@ -161,19 +162,6 @@ class AnimalPicturesDetailsScreenState
     });
   }
 
-  String _resolveType() {
-    switch (_animalType) {
-      case Animal.birds:
-        return "birdo";
-      case Animal.cats:
-        return "catto";
-      case Animal.shibes:
-        return "doggo";
-      default:
-        return "picture";
-    }
-  }
-
   Widget _buildPhotoView(String url, String tag) {
     return PhotoView(
       loadingBuilder: (context, event) {
@@ -222,7 +210,7 @@ class AnimalPicturesDetailsScreenState
           flex: 3,
           child: Center(
             child: Text(
-              'Oh, wow! A nice ${_resolveType()}!',
+              'Oh, wow! A nice ${animalHumanReadable(_animalType, defaultValue: "picture")}!',
               style: theme.headline4,
             ),
           ),

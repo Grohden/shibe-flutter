@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shibe_flutter/enum_utils.dart';
 import 'package:shibe_flutter/scenes/screens/animal_picture_details.dart';
 import 'package:shibe_flutter/api/graphql_api.dart';
 import 'package:shibe_flutter/client.dart';
@@ -52,41 +53,72 @@ class _AnimalListingState extends State<AnimalListing>
     );
   }
 
-  Widget _buildDropdown() {
-    return DropdownButton<Animal>(
-      value: _animalType,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: _changeAnimalType,
-      items: Animal.values.map<DropdownMenuItem<Animal>>((value) {
-        return DropdownMenuItem<Animal>(
-          value: value,
-          child: Text(value.name),
+  Future<void> _askOption() async {
+    final selected = await showDialog<Animal>(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text('Select an animal type'),
+          children: knownAnimals().map<Widget>((value) {
+            return SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, value),
+              child: Text(value.name),
+            );
+          }).toList(),
         );
-      }).toList(),
+      },
+    );
+
+
+    switch (selected) {
+      case null:
+        break;
+      default:
+        _changeAnimalType(selected);
+        break;
+    }
+  }
+
+  IconData _currentIcon() {
+    switch (_animalType) {
+      case Animal.birds:
+        return Icons.flutter_dash;
+      case Animal.cats:
+        return Icons.cruelty_free;
+      case Animal.shibes:
+      case Animal.artemisUnknown:
+        return Icons.pets;
+    }
+  }
+
+  Widget _buildIcon() {
+    return IconButton(
+      icon: Icon(_currentIcon()),
+      onPressed: _askOption,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        _buildDropdown(),
-        Expanded(
-          child: AnimalPicturesGrid(
-            onTap: _openPicturePage,
-            loading: loading,
-            pictures: list,
-            controller: bottomScrollController,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Listing ${animalHumanReadable(_animalType)}s'),
+        centerTitle: true,
+        actions: [_buildIcon()],
+      ),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: AnimalPicturesGrid(
+              onTap: _openPicturePage,
+              loading: loading,
+              pictures: list,
+              controller: bottomScrollController,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
