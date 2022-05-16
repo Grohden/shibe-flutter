@@ -1,0 +1,6 @@
+fragment SimplePicture on AnimalPicture {
+  id
+  url
+  createdAt
+  updatedAt
+}

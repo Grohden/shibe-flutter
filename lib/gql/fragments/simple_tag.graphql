@@ -1,0 +1,4 @@
+fragment SimpleTag on Tag {
+  id
+  name
+}

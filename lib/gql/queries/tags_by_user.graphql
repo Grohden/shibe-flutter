@@ -1,0 +1,5 @@
+query TagsByUser($userId: ID!) {
+  tagsByUser(userId: $userId) {
+    ...SimpleTag
+  }
+}

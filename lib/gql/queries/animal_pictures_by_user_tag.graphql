@@ -1,0 +1,10 @@
+query AnimalPicturesByUserTag($userId: ID!, $tagId: ID!, $first: Int, $after: String) {
+  animalPicturesByUserTag(userId: $userId, tagId: $tagId, first: $first, after: $after) {
+    nodes {
+      ...SimplePicture
+    }
+    pageInfo {
+      ...EndPageInfo
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query UserAnimalPictureDetails($pictureId: ID!, $userId: ID!) {
+  userTagsByAnimalPicture(pictureId: $pictureId, userId: $userId) {
+    ...SimpleTag
+  }
+  animalPicturesById(pictureId: $pictureId) {
+    animalType
+  }
+}

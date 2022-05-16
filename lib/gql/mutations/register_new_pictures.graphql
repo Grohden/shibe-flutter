@@ -1,0 +1,7 @@
+mutation RegisterNewPictures($animalType: Animal!, $count: Int) {
+  registerAnimalPictures(animalType: $animalType, count: $count) {
+    animalPictures {
+      ...SimplePicture
+    }
+  }
+}

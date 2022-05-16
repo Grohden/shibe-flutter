@@ -1,0 +1,8 @@
+mutation RegisterUserTag($tagInput: RegisterTagInput!) {
+  registerUserTag(tagInput: $tagInput) {
+    tag {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,19 @@
+targets:
+  $default:
+    builders:
+      artemis:
+        options:
+          schema_mapping:
+            - output: lib/api/graphql_api.dart
+              schema: lib/schema.graphql
+              queries_glob: lib/gql/**.graphql
+          scalar_mapping:
+            - custom_parser_import: './iso_parser.dart'
+              graphql_type: ISO8601DateTime
+              dart_type: DateTime
+          ignore_for_file:
+            - prefer_const_constructors
+            - prefer_const_literals_to_create_immutables
+            - overridden_fields
+            - non_constant_identifier_names
+

@@ -1,0 +1,5 @@
+mutation DeleteUserPictureTag($pictureId: ID!, $tagId: ID!) {
+  deleteUserPictureTag(pictureId: $pictureId, tagId: $tagId) {
+    deleted
+  }
+}
