@@ -48,11 +48,11 @@ class AnimalPicturesDetailsScreen extends StatefulWidget {
   final String userId;
 
   @override
-  _AnimalPicturesDetailsScreenState createState() =>
-      _AnimalPicturesDetailsScreenState();
+  AnimalPicturesDetailsScreenState createState() =>
+      AnimalPicturesDetailsScreenState();
 }
 
-class _AnimalPicturesDetailsScreenState
+class AnimalPicturesDetailsScreenState
     extends State<AnimalPicturesDetailsScreen> {
   var _loading = false;
   late TextEditingController _controller;
