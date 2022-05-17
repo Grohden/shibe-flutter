@@ -25,6 +25,19 @@ class AnimalPicturesGrid extends StatelessWidget {
         onTap: () => onTap(item),
         child: CachedNetworkImage(
           imageUrl: item.url,
+          imageBuilder: (context, imageProvider) {
+            return Hero(
+              tag: item.id,
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            );
+          },
           placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
           ),
