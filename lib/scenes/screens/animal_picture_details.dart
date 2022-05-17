@@ -164,6 +164,7 @@ class AnimalPicturesDetailsScreenState
 
   Widget _buildPhotoView(String url, String tag) {
     return PhotoView(
+      filterQuality: FilterQuality.high,
       loadingBuilder: (context, event) {
         final progress = event?.expectedTotalBytes == null
             ? null
